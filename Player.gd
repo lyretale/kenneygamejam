@@ -2,7 +2,7 @@ extends Node2D
 
 export var player_stats: Resource = null
 
-var max_speed = player_stats.normal_speed
+onready var max_speed = player_stats.normal_speed
 var direction := Vector2.ZERO
 var desired_velocity := Vector2.ZERO
 var steering_vector := Vector2.ZERO

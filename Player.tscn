@@ -1,11 +1,16 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
+[ext_resource path="res://assets/player/hullLarge (1).png" type="Texture" id=2]
+[ext_resource path="res://player_stats.tres" type="Resource" id=3]
 
 [node name="Player" type="Node2D"]
 script = ExtResource( 1 )
+player_stats = ExtResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="."]
+rotation = -1.5708
+texture = ExtResource( 2 )
 
 [node name="Boost" type="Timer" parent="."]
 one_shot = true

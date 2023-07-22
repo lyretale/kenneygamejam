@@ -2,11 +2,16 @@
 
 importer="texture"
 type="StreamTexture"
-valid=false
+path="res://.import/elite.png-3e764dcd2f98b128f7ceb5a18a1b0c74.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
-source_file="res://assets/enemies/ship (2).png"
+source_file="res://assets/enemies/elite.png"
+dest_files=[ "res://.import/elite.png-3e764dcd2f98b128f7ceb5a18a1b0c74.stex" ]
+
 [params]
 
 compress/mode=0

@@ -1,8 +1,16 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/player/hullLarge (1).png" type="Texture" id=2]
 [ext_resource path="res://player_stats.tres" type="Resource" id=3]
+[ext_resource path="res://assets/particles/PNG (Transparent)/slash_01.png" type="Texture" id=4]
+[ext_resource path="res://assets/particles/PNG (Transparent)/trace_04.png" type="Texture" id=5]
+[ext_resource path="res://assets/particles/PNG (Transparent)/smoke_04.png" type="Texture" id=6]
+[ext_resource path="res://assets/particles/PNG (Transparent)/trace_01.png" type="Texture" id=7]
+[ext_resource path="res://assets/particles/PNG (Transparent)/symbol_01.png" type="Texture" id=8]
+
+[sub_resource type="Curve" id=2]
+_data = [ Vector2( 0.00830565, 0.669498 ), 0.0, 0.0, 0, 0, Vector2( 0.57309, 0.988516 ), 0.0, 0.0, 0, 0, Vector2( 0.998339, 0.332075 ), 0.0, 0.0, 0, 0 ]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 17.0
@@ -13,9 +21,119 @@ collision_layer = 2
 script = ExtResource( 1 )
 player_stats = ExtResource( 3 )
 
+[node name="SplashParticle" type="CPUParticles2D" parent="."]
+modulate = Color( 0.458824, 0.839216, 1, 0.164706 )
+position = Vector2( 46, -3 )
+rotation = -1.5708
+scale = Vector2( 0.12, 0.1 )
+emitting = false
+amount = 16
+lifetime = 3.0
+lifetime_randomness = 0.42
+texture = ExtResource( 4 )
+emission_shape = 2
+emission_rect_extents = Vector2( 1, 1 )
+direction = Vector2( -1, 0 )
+spread = 30.38
+gravity = Vector2( 100, -50 )
+initial_velocity = 177.99
+initial_velocity_random = 0.42
+linear_accel = -32.52
+linear_accel_random = 0.68
+damping = 43.5
+damping_random = 0.3
+angle_random = 0.97
+scale_amount_random = 0.74
+scale_amount_curve = SubResource( 2 )
+
+[node name="TrailParticle" type="CPUParticles2D" parent="."]
+modulate = Color( 0.32549, 0.72549, 0.952941, 0.278431 )
+position = Vector2( -53, 0 )
+rotation = 1.5708
+scale = Vector2( 0.1, 0.1 )
+emitting = false
+amount = 12
+lifetime = 3.0
+texture = ExtResource( 5 )
+emission_shape = 1
+emission_sphere_radius = 96.68
+direction = Vector2( 0, -1 )
+spread = 40.13
+gravity = Vector2( 0, 200 )
+initial_velocity = 202.53
+linear_accel = -27.61
+linear_accel_random = 0.68
+damping = 30.0
+angle_random = 0.2
+scale_amount = 8.0
+scale_amount_curve = SubResource( 2 )
+
+[node name="SplashTrailParticle" type="CPUParticles2D" parent="."]
+modulate = Color( 0.32549, 0.72549, 0.952941, 0.278431 )
+position = Vector2( 30, 5.32905e-14 )
+rotation = 1.5708
+scale = Vector2( 0.1, 0.1 )
+emitting = false
+amount = 12
+lifetime = 3.0
+texture = ExtResource( 6 )
+emission_shape = 1
+emission_sphere_radius = 96.68
+direction = Vector2( 0, -1 )
+spread = 40.13
+gravity = Vector2( 0, 200 )
+initial_velocity = 202.53
+linear_accel = -27.61
+linear_accel_random = 0.68
+damping = 30.0
+angle_random = 0.2
+scale_amount_curve = SubResource( 2 )
+
 [node name="Sprite" type="Sprite" parent="."]
 rotation = -1.5708
 texture = ExtResource( 2 )
+
+[node name="SpeedBoostParticle" type="CPUParticles2D" parent="."]
+modulate = Color( 1, 1, 1, 0.278431 )
+position = Vector2( 16, 1.42109e-14 )
+rotation = 1.5708
+scale = Vector2( 0.1, 0.1 )
+emitting = false
+amount = 50
+lifetime = 4.0
+texture = ExtResource( 7 )
+emission_shape = 1
+emission_sphere_radius = 96.68
+direction = Vector2( 0, -1 )
+spread = 40.13
+gravity = Vector2( 0, 200 )
+initial_velocity = 100.0
+linear_accel = 0.13
+linear_accel_random = 0.82
+damping = 30.0
+angle_random = 0.2
+scale_amount = 2.0
+scale_amount_curve = SubResource( 2 )
+
+[node name="HealingParticle" type="CPUParticles2D" parent="."]
+modulate = Color( 1, 1, 1, 0.278431 )
+position = Vector2( 4, 2.27374e-13 )
+rotation = 1.5708
+scale = Vector2( 0.1, 0.1 )
+emitting = false
+amount = 10
+lifetime = 3.0
+explosiveness = 1.0
+lifetime_randomness = 0.46
+texture = ExtResource( 8 )
+direction = Vector2( 0, 0 )
+spread = 180.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 500.0
+initial_velocity_random = 1.0
+scale_amount = 2.0
+scale_amount_curve = SubResource( 2 )
+color = Color( 0.988235, 0.517647, 0.517647, 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -5, 0 )
@@ -36,6 +154,9 @@ one_shot = true
 
 [node name="TimerGoldPickUp" type="Timer" parent="."]
 wait_time = 0.1
+one_shot = true
+
+[node name="TimerHealingPickUp" type="Timer" parent="."]
 one_shot = true
 
 [connection signal="timeout" from="Boost" to="." method="_on_Boost_timeout"]

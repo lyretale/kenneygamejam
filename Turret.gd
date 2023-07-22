@@ -1,5 +1,7 @@
 extends Area2D
 
+export var player_stats: Resource = null
+
 export (float, 0.01, 1.0) var rotation_factor := 0.1
 export (NodePath) var target_path
 export (NodePath) var bullets_path

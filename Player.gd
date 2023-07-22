@@ -3,9 +3,17 @@ extends KinematicBody2D
 export var player_stats: Resource = null
 
 onready var max_speed = player_stats.normal_speed
+
 onready var timer_speed_pickup := $TimerSpeedPickUp
 onready var timer_attack_pickup := $TimerAttackPickUp
 onready var timer_gold_pickup := $TimerGoldPickUp
+onready var timer_healing_pickup := $TimerHealingPickUp
+
+onready var splash_particles := $SplashParticle
+onready var splash_trail_particles := $SplashTrailParticle
+onready var trail_particles := $TrailParticle
+onready var speed_boost_particles := $SpeedBoostParticle
+onready var healing_particles := $HealingParticle
 
 var direction := Vector2.ZERO
 var desired_velocity := Vector2.ZERO
@@ -13,7 +21,9 @@ var steering_vector := Vector2.ZERO
 var velocity := Vector2.ZERO
 
 func _ready() -> void:
-	timer_speed_pickup.connect("timeout", self, "toggle_speed_pickup_effect", [false])
+	timer_speed_pickup.connect("timeout", self, "toggle_heal_pickup_effect", [false])
+	timer_healing_pickup.connect("timeout", self, "toggle_speed_pickup_effect", [false])
+	timer_attack_pickup.connect("timeout", self, "toggle_attack_pickup_effect", [false])
 
 ### Movement
 
@@ -32,6 +42,9 @@ func _physics_process(delta: float) -> void:
 	if direction:
 		rotation = velocity.angle()
 
+	splash_particles.emitting = velocity.length() > max_speed / 15.0
+	splash_trail_particles.emitting = velocity.length() > max_speed / 15.0
+	trail_particles.emitting = velocity.length() > max_speed / 15.0
 
 func _on_Boost_timeout() -> void:
 	max_speed = player_stats.normal_speed
@@ -58,15 +71,24 @@ func toogle_cooldown_pickup(is_on:bool) -> void:
 		timer_attack_pickup.start()
 		player_stats.turret_cooldown = player_stats.turret_cooldown * 0.5
 		
-func toggle_heal_effect(is_on: bool) -> void:
+### Healing particles are looping playback and else statement is not working
+func toggle_heal_pickup_effect(is_on: bool) -> void:
 	if is_on:
+		timer_healing_pickup.start()
 		player_stats.health += 25
+		healing_particles.one_shot = true
+		healing_particles.emitting = true
+	else:
+		player_stats.health = player_stats.health
+		healing_particles.one_shot = false
+		healing_particles.emitting = false
 
 func toggle_speed_pickup_effect(is_on: bool) -> void:
 	if is_on:
 		timer_speed_pickup.start()
 		max_speed = player_stats.boost_speed
+		speed_boost_particles.emitting = true
 	else:
 		max_speed = player_stats.normal_speed
-		
+		speed_boost_particles.emitting = false
 		

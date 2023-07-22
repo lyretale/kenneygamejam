@@ -8,6 +8,7 @@ onready var timer := $Timer
 func _ready() -> void:
 	position = global_position
 	connect("body_entered", self, "_on_body_entered")
+	connect("area_entered", self, "_on_body_entered")
 	timer.connect("timeout", self, "explode")
 
 func _physics_process(delta: float) -> void:
@@ -28,6 +29,7 @@ func explode() -> void:
 
 
 func _on_body_entered(body: Node) -> void:
+	print(body)
 	if body.has_method("take_damage"):
 		body.take_damage(damage)
 	explode()

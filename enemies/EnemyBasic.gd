@@ -61,11 +61,14 @@ func _physics_process(delta: float) -> void:
 	rotation = velocity.angle()
 	update()
 
-func _draw():
-	steering.debug_draw(self)
+func die():
+	
+	queue_free()
 
 func take_damage(damage) -> void:
 	health -= damage
+	if health <= 0:
+		die()
 	print("enemy health: ", health)
 
 func _on_player_entered(body: KinematicBody2D) -> void:

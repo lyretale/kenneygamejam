@@ -14,6 +14,6 @@ shape = SubResource( 1 )
 [node name="Sprite" type="Sprite" parent="."]
 
 [node name="Position2D" type="Position2D" parent="Sprite"]
-position = Vector2( 0, -26 )
+position = Vector2( 42, 0 )
 
 [node name="Timer" type="Timer" parent="."]

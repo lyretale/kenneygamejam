@@ -19,9 +19,8 @@ func _process(delta: float) -> void:
 	desired_velocity = max_speed * direction
 	steering_vector = desired_velocity - velocity
 	velocity += steering_vector * player_stats.drag_factor
-	move_and_slide(velocity)
 
-	position += velocity * delta
+	position += move_and_slide(velocity * delta)
 	if direction:
 		rotation = velocity.angle()
 

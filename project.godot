@@ -9,13 +9,37 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "",
+"class": "AISteering",
+"language": "GDScript",
+"path": "res://enemies/AISteering.gd"
+}, {
+"base": "Resource",
+"class": "BoidSteering",
+"language": "GDScript",
+"path": "res://enemies/BoidSteering.gd"
+}, {
+"base": "Resource",
+"class": "Context",
+"language": "GDScript",
+"path": "res://enemies/Context.gd"
+}, {
 "base": "Resource",
 "class": "PlayerStats",
 "language": "GDScript",
 "path": "res://PlayerStats.gd"
+}, {
+"base": "Resource",
+"class": "Utils",
+"language": "GDScript",
+"path": "res://enemies/Utils.gd"
 } ]
 _global_script_class_icons={
-"PlayerStats": ""
+"AISteering": "",
+"BoidSteering": "",
+"Context": "",
+"PlayerStats": "",
+"Utils": ""
 }
 
 [application]

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/missile.png-5fd5200fcaf905f0fe50a9ad62d6c0cf.stex"
+path="res://.import/shotgun-real.png-c770a6deaa1d6324977e62388d71fee1.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/turrets/missile.png"
-dest_files=[ "res://.import/missile.png-5fd5200fcaf905f0fe50a9ad62d6c0cf.stex" ]
+source_file="res://assets/turrets/shotgun-real.png"
+dest_files=[ "res://.import/shotgun-real.png-c770a6deaa1d6324977e62388d71fee1.stex" ]
 
 [params]
 

@@ -1,5 +1,5 @@
 extends "Pickup.gd"
 
-func apply_effect(body: Node) -> void:
-	body.toggle_cooldown_effect(true)
+func toogle_cooldown_pickup(body: Node) -> void:
+	body.toggle_cooldown_pickup(true)
 

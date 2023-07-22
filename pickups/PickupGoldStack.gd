@@ -1,4 +1,4 @@
 extends "Pickup.gd"
 
-func apply_effect(body: Node) -> void:
+func add_gold_stack(body: Node) -> void:
 	body.gain_gold_stack(true)

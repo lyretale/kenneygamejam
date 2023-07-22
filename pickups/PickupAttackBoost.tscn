@@ -4,9 +4,8 @@
 [ext_resource path="res://pickups/PickupCooldown.tscn" type="PackedScene" id=2]
 [ext_resource path="res://pickups/PickupAttackBoost.gd" type="Script" id=3]
 
-[node name="Pickup" instance=ExtResource( 2 )]
+[node name="PickupAttack" instance=ExtResource( 2 )]
 script = ExtResource( 3 )
 
-[node name="PickupGem" type="Sprite" parent="." index="1"]
-position = Vector2( 0, -13 )
+[node name="PickupSprite" parent="." index="1"]
 texture = ExtResource( 1 )

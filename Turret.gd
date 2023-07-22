@@ -9,7 +9,7 @@ export (NodePath) var bullets_path
 onready var target_node = get_node(target_path)
 onready var bullets_node = get_node(bullets_path)
 onready var start_offset = self.transform.origin - target_node.transform.origin
-onready var timer := $Timer
+onready var turret_cooldown_timer := $Timer
 onready var cannon := $Sprite/Position2D
 onready var sprite := $Sprite
 

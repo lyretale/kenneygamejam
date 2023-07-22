@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://TileMap.tscn" type="PackedScene" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://pickups/PickupGoldStack.tscn" type="PackedScene" id=5]
 [ext_resource path="res://pickups/PickupHealth.tscn" type="PackedScene" id=6]
 [ext_resource path="res://pickups/PickupAttackBoost.tscn" type="PackedScene" id=7]
+[ext_resource path="res://enemies/EnemyBasic.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Turret.tscn" type="PackedScene" id=9]
 
 [node name="Test Sort" type="YSort"]
 
@@ -16,11 +18,19 @@ tile_data = PoolIntArray( -6, 2, 0, -5, 2, 0, -4, 2, 0, -3, 2, 0, -2, 2, 0, -1, 
 
 [node name="TileMap" parent="." instance=ExtResource( 2 )]
 position = Vector2( -658, -193 )
+tile_data = PoolIntArray( 65538, 0, 0, 65539, 0, 1, 65540, 0, 1, 65541, 0, 2, 131074, 0, 65536, 131075, 0, 65537, 131076, 0, 65537, 131077, 0, 65538, 131089, 0, 0, 131090, 0, 1, 131091, 0, 1, 131092, 0, 1, 131093, 0, 2, 196610, 0, 65536, 196611, 0, 65537, 196612, 0, 65537, 196613, 0, 65538, 196624, 0, 0, 196625, 0, 65537, 196626, 0, 65537, 196627, 0, 65537, 196628, 0, 65537, 196629, 0, 65538, 262146, 0, 131072, 262147, 0, 131073, 262148, 0, 131073, 262149, 0, 131074, 262152, 0, 0, 262153, 0, 1, 262154, 0, 2, 262160, 0, 65536, 262161, 0, 65537, 262162, 0, 65537, 262163, 0, 65537, 262164, 0, 65537, 262165, 0, 65538, 327688, 0, 131072, 327689, 0, 131073, 327690, 0, 131074, 327696, 0, 65536, 327697, 0, 65537, 327698, 0, 65537, 327699, 0, 65537, 327700, 0, 65537, 327701, 0, 65538, 393227, 0, 0, 393228, 0, 1, 393229, 0, 2, 393232, 0, 65536, 393233, 0, 65537, 393234, 0, 65537, 393235, 0, 65537, 393236, 0, 65537, 393237, 0, 65538, 458763, 0, 65536, 458764, 0, 65537, 458765, 0, 65538, 458768, 0, 131072, 458769, 0, 131073, 458770, 0, 131073, 458771, 0, 131073, 458772, 0, 131073, 458773, 0, 131074, 524299, 0, 131072, 524300, 0, 131073, 524301, 0, 131074, 720904, 1, 0, 720905, 1, 1, 720906, 1, 2, 720907, 1, 3, 786440, 1, 65536, 786441, 1, 131073, 786442, 1, 131074, 786443, 1, 65539, 851976, 1, 131072, 851977, 1, 131073, 851978, 1, 65538, 851979, 1, 131075, 917512, 1, 196608, 917513, 1, 196609, 917514, 1, 196609, 917515, 1, 196611 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 current = true
+
+[node name="Turret" parent="." instance=ExtResource( 9 )]
+target_path = NodePath("../Player")
+bullets_path = NodePath("../Bullets")
+
+[node name="EnemyBasic" parent="." instance=ExtResource( 8 )]
+position = Vector2( -299, 306 )
 
 [node name="PickupHealth" parent="." instance=ExtResource( 6 )]
 position = Vector2( 317, -64 )
@@ -31,6 +41,9 @@ position = Vector2( 620, -148 )
 [node name="PickupSpeed" parent="." instance=ExtResource( 4 )]
 position = Vector2( 140, -4 )
 
+[node name="PickupSpeed2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 656, 598 )
+
 [node name="PickupGoldStack" parent="." instance=ExtResource( 5 )]
 position = Vector2( -526, 454 )
 
@@ -39,3 +52,5 @@ position = Vector2( 394, 526 )
 
 [node name="PickupAttack" parent="." instance=ExtResource( 7 )]
 position = Vector2( -579, 209 )
+
+[node name="Bullets" type="Node2D" parent="."]

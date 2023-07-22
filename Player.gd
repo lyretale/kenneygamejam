@@ -30,9 +30,11 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 
-	if Input.is_action_just_pressed("boost"):
+	if Input.is_action_just_pressed("boost") and not get_node("Boost").time_left > 0:
 		get_node("Boost").start()
 		max_speed = player_stats.boost_speed
+		speed_boost_particles.one_shot = true
+		speed_boost_particles.emitting = true
 
 	desired_velocity = max_speed * direction
 	steering_vector = desired_velocity - velocity
@@ -48,6 +50,8 @@ func _physics_process(delta: float) -> void:
 
 func _on_Boost_timeout() -> void:
 	max_speed = player_stats.normal_speed
+	speed_boost_particles.one_shot = false
+	speed_boost_particles.emitting = false
 
 func take_damage(damage) -> void:
 	player_stats.health -= damage
@@ -75,7 +79,7 @@ func toogle_cooldown_pickup(is_on:bool) -> void:
 		timer_attack_pickup.start()
 		player_stats.turret_cooldown = player_stats.turret_cooldown * 0.5
 		
-### Healing particles are looping playback and else statement is not working
+### Healing and speed particles are looping playback and else statement is not working
 func toggle_heal_pickup_effect(is_on: bool) -> void:
 	if is_on:
 		timer_healing_pickup.start()
@@ -91,8 +95,10 @@ func toggle_speed_pickup_effect(is_on: bool) -> void:
 	if is_on:
 		timer_speed_pickup.start()
 		max_speed = player_stats.boost_speed
+		speed_boost_particles.one_shot = true
 		speed_boost_particles.emitting = true
 	else:
 		max_speed = player_stats.normal_speed
+		speed_boost_particles.one_shot = false
 		speed_boost_particles.emitting = false
 		

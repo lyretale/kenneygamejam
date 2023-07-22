@@ -5,6 +5,7 @@ var target: KinematicBody2D
 
 # The Area2D that detects the player.
 onready var aggro_area := $AggroArea
+onready var neighbor_detector = $NeighborDetector
 
 export var max_speed := 400.0
 export var drag_factor := 0.1
@@ -13,8 +14,6 @@ var velocity := Vector2.ZERO
 var desired_velocity := Vector2.ZERO
 var steering_vector := Vector2.ZERO
 var direction := Vector2.ZERO
-var angle = 0
-var radius = 50
 
 
 func _ready() -> void:
@@ -24,9 +23,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	direction = Vector2(0,0)
 	if target:
-		direction = to_local(target.global_position).normalized() #+ Vector2.RIGHT.rotated(angle)*radius
-		#angle += 0.5
-		
+		direction = to_local(target.global_position).normalized()
 
 	desired_velocity = max_speed * direction
 	steering_vector = desired_velocity - velocity

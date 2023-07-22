@@ -20,6 +20,7 @@ var desired_velocity := Vector2.ZERO
 var steering_vector := Vector2.ZERO
 var direction := Vector2.ZERO
 
+var health := 100
 
 func _ready() -> void:
 	aggro_area.connect("body_entered", self, "_on_player_entered")
@@ -63,6 +64,9 @@ func _physics_process(delta: float) -> void:
 func _draw():
 	steering.debug_draw(self)
 
+func take_damage(damage) -> void:
+	health -= damage
+	print("enemy health: ", health)
 
 func _on_player_entered(body: KinematicBody2D) -> void:
 	# Sets the target when it enters the Area2D.

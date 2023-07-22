@@ -24,7 +24,6 @@ func set_gold(new_gold: int) -> void:
 
 func set_turret_cooldown(new_cooldown: float) -> void:
 	turret_cooldown = new_cooldown
-	save()
 	
 	# Add code to update UI here
 	
@@ -47,5 +46,3 @@ func set_turret_cannon_attack(new_attack_power: float) -> void:
 	save()
 	
 
-		
-		

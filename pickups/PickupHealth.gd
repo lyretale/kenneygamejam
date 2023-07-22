@@ -1,5 +1,5 @@
 extends "Pickup.gd"
 
 func apply_effect(body: Node) -> void:
-	body.toggle_cooldown_effect(true)
+	body.toggle_heal_effect(true)
 

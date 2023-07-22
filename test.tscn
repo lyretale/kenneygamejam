@@ -1,15 +1,20 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://EnemyBasic.tscn" type="PackedScene" id=2]
+[ext_resource path="res://pickups/PickupSpeedBoost.tscn" type="PackedScene" id=3]
+[ext_resource path="res://pickups/speedup.png" type="Texture" id=4]
+[ext_resource path="res://TileMap.tscn" type="PackedScene" id=5]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 144.003
 
 [node name="YSort" type="Node2D"]
 
+[node name="TileMap" parent="." instance=ExtResource( 5 )]
+
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 1092, 566 )
+position = Vector2( 649, 143 )
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 current = true
@@ -23,4 +28,23 @@ position = Vector2( 182, 133 )
 shape = SubResource( 1 )
 
 [node name="EnemyBasic" parent="." instance=ExtResource( 2 )]
+visible = false
 position = Vector2( 710, 401 )
+
+[node name="Pickup" parent="." instance=ExtResource( 3 )]
+
+[node name="Speedup" type="Sprite" parent="."]
+position = Vector2( 492, 542 )
+texture = ExtResource( 4 )
+
+[node name="Speedup2" type="Sprite" parent="."]
+position = Vector2( 1475, 260 )
+texture = ExtResource( 4 )
+
+[node name="Speedup3" type="Sprite" parent="."]
+position = Vector2( -313, 256 )
+texture = ExtResource( 4 )
+
+[node name="Speedup4" type="Sprite" parent="."]
+position = Vector2( 537, -92 )
+texture = ExtResource( 4 )

@@ -25,6 +25,7 @@ shape = SubResource( 1 )
 [node name="AggroArea" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 2
+gravity = 0.9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AggroArea"]
 shape = SubResource( 2 )

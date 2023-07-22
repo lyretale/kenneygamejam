@@ -9,6 +9,7 @@ radius = 17.0
 height = 58.0
 
 [node name="Player" type="KinematicBody2D"]
+collision_layer = 2
 script = ExtResource( 1 )
 player_stats = ExtResource( 3 )
 

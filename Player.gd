@@ -11,10 +11,9 @@ var velocity := Vector2.ZERO
 
 func _process(delta: float) -> void:
 	direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	velocity = max_speed * direction
 
 	if Input.is_action_just_pressed("boost"):
-		get_node("Timer").start()
+		get_node("Boost").start()
 		max_speed = player_stats.boost_speed
 
 	desired_velocity = max_speed * direction

@@ -48,7 +48,11 @@ func _physics_process(delta: float) -> void:
 
 func _on_Boost_timeout() -> void:
 	max_speed = player_stats.normal_speed
-	
+
+func take_damage(damage) -> void:
+	player_stats.health -= damage
+	print("player health: ", player_stats.health)
+
 ### PICKUPS ###
 
 func add_gold(is_on:bool) -> void:

@@ -14,6 +14,7 @@ onready var sprite := $Sprite
 
 var target: PhysicsBody2D = null
 var target_list := []
+var angle = 0
 
 func _ready() -> void:
 	# We use the timer to control the rate of fire. By default, timers run
@@ -29,7 +30,7 @@ func _physics_process(_delta: float) -> void:
 	_rotate_to_target()
 
 func _rotate_to_target() -> void:
-	var target_angle := PI / 2
+	var target_angle = PI 
 	if target:
 		target_angle = target.global_position.angle_to_point(global_position)
 	sprite.rotation = lerp_angle(sprite.rotation, target_angle, rotation_factor)
@@ -40,7 +41,7 @@ func _on_Timer_timeout() -> void:
 	if not target_list:
 		return
 	# We load the rockt scene and instantiate it.
-	var cannon_ball: Area2D = preload("../CannonBall.tscn").instance()
+	var cannon_ball: Area2D = preload("EnemyCannonBall.tscn").instance()
 	bullets_node.add_child(cannon_ball)
 	# This line copies the `cannon`'s position, rotation, and scale at once,
 	# placing and orienting the rocket properly.

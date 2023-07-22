@@ -1,4 +1,4 @@
-extends Node2D
+extends KinematicBody2D
 
 export var player_stats: Resource = null
 
@@ -19,6 +19,7 @@ func _process(delta: float) -> void:
 	desired_velocity = max_speed * direction
 	steering_vector = desired_velocity - velocity
 	velocity += steering_vector * player_stats.drag_factor
+	move_and_slide(velocity)
 
 	position += velocity * delta
 	if direction:

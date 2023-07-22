@@ -2,9 +2,9 @@ class_name PlayerStats
 extends Resource
 
 export var health := 3 setget set_health
-export var boost_speed := 1500.0 setget set_boost_speed
-export var normal_speed := 600.0 setget set_normal_speed
-export var drag_factor := 0.1 setget set_drag_factor
+export var boost_speed := 1000.0 setget set_boost_speed
+export var normal_speed := 400.0 setget set_normal_speed
+export var drag_factor := 0.01 setget set_drag_factor
 
 func save() -> void:
 	ResourceSaver.save(resource_path, self)

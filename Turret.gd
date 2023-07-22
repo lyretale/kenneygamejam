@@ -1,6 +1,10 @@
 extends Area2D
 
 export (float, 0.01, 1.0) var rotation_factor := 0.1
+export (NodePath) var target_path
+
+onready var target_node = get_node(target_path)
+onready var start_offset = self.transform.origin - target_node.transform.origin
 #onready var timer := $Timer
 onready var cannon := $Sprite/Position2D
 onready var sprite := $Sprite
@@ -12,6 +16,9 @@ func _ready() -> void:
 	connect("mouse_entered", self, "_on_mouse_entered")
 	connect("mouse_exited", self, "_on_mouse_exited")
 	input_pickable = true
+
+func _process(delta):
+	self.transform.origin = target_node.transform.origin + start_offset
 
 func _physics_process(_delta: float) -> void:
 	_rotate_to_mouse()

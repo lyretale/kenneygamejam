@@ -2,17 +2,18 @@ extends Area2D
 
 export (float, 0.01, 1.0) var rotation_factor := 0.1
 export (NodePath) var target_path
+export (NodePath) var bullets_path
 
 onready var target_node = get_node(target_path)
+onready var bullets_node = get_node(bullets_path)
 onready var start_offset = self.transform.origin - target_node.transform.origin
-#onready var timer := $Timer
+onready var timer := $Timer
 onready var cannon := $Sprite/Position2D
 onready var sprite := $Sprite
 
 var in_range = false
 
 func _ready() -> void:
-	# timer.connect("timeout", self, "_on_Timer_timeout")
 	connect("mouse_entered", self, "_on_mouse_entered")
 	connect("mouse_exited", self, "_on_mouse_exited")
 	input_pickable = true
@@ -38,12 +39,13 @@ func _input_event(viewport: Object, event: InputEvent, shape_idx: int) -> void:
 		fire()
 
 func fire():
-	if not in_range:
+	if not in_range or timer.time_left > 0:
 		return
 	var cannon_ball: Area2D = preload("CannonBall.tscn").instance()
-	add_child(cannon_ball)
+	bullets_node.add_child(cannon_ball)
 	
 	cannon_ball.global_transform = cannon.global_transform
+	timer.start()
 
 func _on_mouse_entered() -> void:
 	Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)

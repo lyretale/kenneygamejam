@@ -21,3 +21,6 @@ position = Vector2( 218, 194 )
 [node name="Turret" parent="." instance=ExtResource( 3 )]
 position = Vector2( 218, 194 )
 target_path = NodePath("../Level/Player")
+bullets_path = NodePath("../Bullets")
+
+[node name="Bullets" type="Node" parent="."]

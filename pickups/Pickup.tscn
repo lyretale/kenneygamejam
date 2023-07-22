@@ -140,6 +140,8 @@ scale_curve = SubResource( 6 )
 color = Color( 0.721569, 1, 0.6, 1 )
 
 [node name="Pickup" type="Area2D"]
+collision_layer = 8
+collision_mask = 2
 script = ExtResource( 4 )
 
 [node name="ShadowCircle" type="Sprite" parent="."]

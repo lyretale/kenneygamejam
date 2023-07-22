@@ -1,9 +1,13 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Objective.gd" type="Script" id=1]
 [ext_resource path="res://assets/particles/PNG (Transparent)/circle_01.png" type="Texture" id=2]
 [ext_resource path="res://assets/pickups/objective.png" type="Texture" id=3]
 [ext_resource path="res://assets/particles/PNG (Transparent)/symbol_02.png" type="Texture" id=4]
+[ext_resource path="res://TileMap.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/npcs/womanGreen_stand.png" type="Texture" id=6]
+[ext_resource path="res://assets/npcs/survivor1_stand.png" type="Texture" id=7]
+[ext_resource path="res://assets/npcs/manBrown_stand.png" type="Texture" id=8]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 620.0
@@ -120,6 +124,9 @@ tracks/3/keys = {
 [node name="Objective" type="Area2D"]
 script = ExtResource( 1 )
 
+[node name="TileMap" parent="." instance=ExtResource( 5 )]
+tile_data = PoolIntArray( -131075, 1, 0, -131074, 1, 2, -131073, 1, 2, -196608, 1, 2, -196607, 1, 2, -196606, 1, 3, -65539, 1, 65536, -65538, 1, 131073, -65537, 1, 65538, -131072, 1, 65538, -131071, 1, 65537, -131070, 1, 131075, -3, 1, 65536, -2, 1, 131073, -1, 1, 131073, -65536, 1, 65538, -65535, 1, 131074, -65534, 1, 131075, 65533, 1, 131072, 65534, 1, 65538, 65535, 1, 131074, 0, 1, 65537, 1, 1, 131073, 2, 1, 131075, 131069, 1, 196608, 131070, 1, 196610, 131071, 1, 196609, 65536, 1, 196610, 65537, 1, 196610, 65538, 1, 196611 )
+
 [node name="ObjectiveCollision" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
@@ -158,3 +165,15 @@ color = Color( 0.870588, 1, 0.4, 1 )
 anims/RESET = SubResource( 3 )
 anims/complete = SubResource( 4 )
 anims/occupied = SubResource( 2 )
+
+[node name="ManBrownStand" type="Sprite" parent="."]
+position = Vector2( -68, -87 )
+texture = ExtResource( 8 )
+
+[node name="WomanGreenStand" type="Sprite" parent="."]
+position = Vector2( 82, 9 )
+texture = ExtResource( 6 )
+
+[node name="Survivor1Stand2" type="Sprite" parent="."]
+position = Vector2( -87, 5 )
+texture = ExtResource( 7 )

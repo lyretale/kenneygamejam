@@ -56,6 +56,7 @@ window/size/height=720
 [global]
 
 layers=false
+hdr=false
 
 [gui]
 
@@ -110,4 +111,5 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
+quality/depth/hdr=false
 environment/default_environment="res://default_env.tres"

@@ -2,11 +2,16 @@
 
 importer="texture"
 type="StreamTexture"
-valid=false
+path="res://.import/cannon.png-66d4973011cf477570c7e4d88e5c18e6.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
-source_file="res://assets/enemies/ship (2).png"
+source_file="res://assets/enemies/cannon.png"
+dest_files=[ "res://.import/cannon.png-66d4973011cf477570c7e4d88e5c18e6.stex" ]
+
 [params]
 
 compress/mode=0

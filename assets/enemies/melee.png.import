@@ -2,11 +2,16 @@
 
 importer="texture"
 type="StreamTexture"
-valid=false
+path="res://.import/melee.png-7d4692a67dd34dbccffff0ff7872e590.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
-source_file="res://assets/enemies/ship (2).png"
+source_file="res://assets/enemies/melee.png"
+dest_files=[ "res://.import/melee.png-7d4692a67dd34dbccffff0ff7872e590.stex" ]
+
 [params]
 
 compress/mode=0

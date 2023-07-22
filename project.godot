@@ -28,6 +28,10 @@ config/icon="res://icon.png"
 window/size/width=1280
 window/size/height=720
 
+[global]
+
+layers=false
+
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true
@@ -67,6 +71,13 @@ test={
 "deadzone": 0.5,
 "events": [  ]
 }
+
+[layer_names]
+
+2d_physics/layer_1="Player"
+2d_physics/layer_2="Enemies"
+2d_physics/layer_3="Pickups"
+2d_physics/layer_4="Background"
 
 [physics]
 

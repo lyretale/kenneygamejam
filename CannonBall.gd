@@ -1,6 +1,6 @@
 extends Area2D
 
-export var speed := 350.0
+export var speed := 150.0
 export var damage := 10.0
 
 onready var timer := $Timer
@@ -13,7 +13,7 @@ func _physics_process(delta: float) -> void:
 	_move(delta)
 
 func _move(delta: float) -> void:
-	position += transform.x * speed * delta
+	global_position += global_transform.x * speed * delta
 
 func explode() -> void:
 	# We load the explosion scene and instantiate it.

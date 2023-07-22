@@ -44,7 +44,6 @@ func fire():
 	add_child(cannon_ball)
 	
 	cannon_ball.global_transform = cannon.global_transform
-	
 
 func _on_mouse_entered() -> void:
 	Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)

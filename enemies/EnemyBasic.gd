@@ -61,8 +61,25 @@ func _physics_process(delta: float) -> void:
 	rotation = velocity.angle()
 	update()
 
+
+"""
+spawn function does:
+	picks random origin
+	makes turret
+
+
+
+"""
+
+func make_turret() -> void:
+	pass
+
+func spawn(location: Vector2) -> void:
+	origin = location
+	position = location
+
 func die():
-	
+	# dead animation 
 	queue_free()
 
 func take_damage(damage) -> void:

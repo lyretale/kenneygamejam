@@ -17,8 +17,6 @@ var target_list := []
 var angle = 0
 
 func _ready() -> void:
-	# We use the timer to control the rate of fire. By default, timers run
-	# continuously and emit their timeout signal periodically.
 	timer.connect("timeout", self, "_on_Timer_timeout")
 	connect("body_entered", self, "_on_body_entered")
 	connect("body_exited", self, "_on_body_exited")

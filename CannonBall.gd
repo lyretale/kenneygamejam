@@ -1,6 +1,6 @@
 extends Area2D
 
-export var speed := 150.0
+export var speed := 250.0
 export var damage := 10.0
 
 onready var timer := $Timer

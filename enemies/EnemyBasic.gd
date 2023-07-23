@@ -1,26 +1,23 @@
 extends KinematicBody2D
 
-# Will store the robot when it enters the Area2D.
-var target: KinematicBody2D
-
-# The Area2D that detects the player.
-onready var aggro_area := $AggroArea
-onready var neighbor_detector = $NeighborDetector
-onready var raycast := $RayCast2D
-
-#var ai_steering := AISteering.new()
 var steering = BoidSteering.new()
 
 export var max_speed := 150.0
 export var drag_factor := 0.95
 export var origin = Vector2.ZERO
 
+onready var aggro_area := $AggroArea
+onready var neighbor_detector = $NeighborDetector
+onready var raycast := $RayCast2D
+
+var turret_node = null
+var target: KinematicBody2D
 var velocity := Vector2.ZERO
 var desired_velocity := Vector2.ZERO
 var steering_vector := Vector2.ZERO
 var direction := Vector2.ZERO
 
-var health := 100
+var health := 10
 
 func _ready() -> void:
 	aggro_area.connect("body_entered", self, "_on_player_entered")
@@ -61,25 +58,12 @@ func _physics_process(delta: float) -> void:
 	rotation = velocity.angle()
 	update()
 
-
-"""
-spawn function does:
-	picks random origin
-	makes turret
-
-
-
-"""
-
-func make_turret() -> void:
-	pass
-
-func spawn(location: Vector2) -> void:
-	origin = location
-	position = location
+func assign_turret(turret_path):
+	turret_node = get_node(turret_path)
 
 func die():
 	# dead animation 
+	turret_node.queue_free()
 	queue_free()
 
 func take_damage(damage) -> void:

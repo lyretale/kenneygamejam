@@ -17,7 +17,7 @@ var desired_velocity := Vector2.ZERO
 var steering_vector := Vector2.ZERO
 var direction := Vector2.ZERO
 
-var health := 10
+var health := 20
 
 func _ready() -> void:
 	aggro_area.connect("body_entered", self, "_on_player_entered")

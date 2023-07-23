@@ -22,9 +22,8 @@ turret_cooldown = 2.0
 [sub_resource type="Curve" id=2]
 _data = [ Vector2( 0.00830565, 0.669498 ), 0.0, 0.0, 0, 0, Vector2( 0.57309, 0.988516 ), 0.0, 0.0, 0, 0, Vector2( 0.998339, 0.332075 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CapsuleShape2D" id=1]
-radius = 17.0
-height = 58.0
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 17.5, 39.5 )
 
 [node name="Player" type="KinematicBody2D" groups=["player"]]
 collision_layer = 2
@@ -146,9 +145,9 @@ scale_amount_curve = SubResource( 2 )
 color = Color( 0.988235, 0.517647, 0.517647, 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -5, 0 )
+position = Vector2( -8.5, 0.49999 )
 rotation = 1.5708
-shape = SubResource( 1 )
+shape = SubResource( 4 )
 
 [node name="Boost" type="Timer" parent="."]
 wait_time = 0.5

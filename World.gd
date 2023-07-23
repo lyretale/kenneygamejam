@@ -2,6 +2,7 @@ extends Node2D
 
 
 export var world_stats: Resource = null
+export var player_stats: Resource = null
 #onready var time_elapsed := 0.0
 onready var world_clock = $WorldClock
 onready var enemies = $Level/Enemies
@@ -10,6 +11,8 @@ onready var bullets = $Bullets
 onready var water_tiles = $Level/Tilemap/TileMapWater
 onready var objectives = $Level/Objectives
 onready var player = $Level/Player
+onready var health_bar = $Level/Player/Camera2D/CanvasLayer/HealthBar/Bar
+onready var health_label = $Level/Player/Camera2D/CanvasLayer/HealthBar/Label
 var objective = preload("res://Objective.tscn")
 var basic_enemy = preload("res://enemies/EnemyBasic.tscn")
 var basic_enemy_turret = preload("res://enemies/EnemyTurret.tscn")
@@ -31,9 +34,17 @@ func get_open_cell_position() -> Vector2:
 	return global_cell_pos + water_tiles.cell_size * 0.5
 
 func _ready() -> void:
+	world_stats.is_active_objective = false
+	player_stats.health = 100
 	world_clock.connect("timeout", self, "check_active_objective")
+	player.connect("update_health", self, "update_health_bar")
 	randomize()
 	spawn_enemies()
+
+func update_health_bar() -> void:
+	var new_health = player_stats.health
+	health_bar.value = new_health
+	health_label.text = str(new_health)
 
 func check_active_objective() -> void:
 	if not world_stats.is_active_objective:
@@ -48,8 +59,8 @@ func spawn_objective() -> void:
 	#print("origin: ", origin)
 	var distance = player.global_position.distance_to(origin)
 	#print("distance: ", distance)
-	new_objective_instance.timer.wait_time = int(distance / 100)
 	objectives.add_child(new_objective_instance)
+	new_objective_instance.timer.wait_time = int(distance / 100)
 
 func spawn_enemies() -> void:
 	for i in range(world_stats.get_wave_amount()):

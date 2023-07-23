@@ -9,6 +9,7 @@ export var drag_factor := 0.01 setget set_drag_factor
 export var turret_cannon_attack := 20.0 setget set_turret_cannon_attack
 export var turret_cooldown := 2.0 setget set_turret_cooldown
 
+
 func save() -> void:
 	ResourceSaver.save(resource_path, self)
 

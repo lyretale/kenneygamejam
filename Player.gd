@@ -15,6 +15,8 @@ onready var trail_particles := $TrailParticle
 onready var speed_boost_particles := $SpeedBoostParticle
 onready var healing_particles := $HealingParticle
 
+signal update_health
+
 var direction := Vector2.ZERO
 var desired_velocity := Vector2.ZERO
 var steering_vector := Vector2.ZERO
@@ -55,6 +57,7 @@ func _on_Boost_timeout() -> void:
 
 func take_damage(damage) -> void:
 	player_stats.health -= damage
+	emit_signal("update_health")
 	print("player health: ", player_stats.health)
 
 ### PICKUPS ###

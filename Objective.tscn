@@ -168,6 +168,7 @@ scale = Vector2( 3.3, 3.3 )
 texture = ExtResource( 2 )
 
 [node name="ObjectiveIcon" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0.671067 )
 position = Vector2( 36, -117 )
 scale = Vector2( 3.3, 3.3 )
 texture = ExtResource( 3 )

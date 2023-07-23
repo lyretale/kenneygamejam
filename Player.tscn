@@ -1,13 +1,23 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/player/hullLarge (1).png" type="Texture" id=2]
-[ext_resource path="res://player_stats.tres" type="Resource" id=3]
+[ext_resource path="res://PlayerStats.gd" type="Script" id=3]
 [ext_resource path="res://assets/particles/PNG (Transparent)/slash_01.png" type="Texture" id=4]
 [ext_resource path="res://assets/particles/PNG (Transparent)/trace_04.png" type="Texture" id=5]
 [ext_resource path="res://assets/particles/PNG (Transparent)/smoke_04.png" type="Texture" id=6]
 [ext_resource path="res://assets/particles/PNG (Transparent)/trace_01.png" type="Texture" id=7]
 [ext_resource path="res://assets/particles/PNG (Transparent)/symbol_01.png" type="Texture" id=8]
+
+[sub_resource type="Resource" id=3]
+script = ExtResource( 3 )
+health = 100
+gold = 0
+boost_speed = 1000.0
+normal_speed = 400.0
+drag_factor = 0.01
+turret_cannon_attack = 160.0
+turret_cooldown = 2.0
 
 [sub_resource type="Curve" id=2]
 _data = [ Vector2( 0.00830565, 0.669498 ), 0.0, 0.0, 0, 0, Vector2( 0.57309, 0.988516 ), 0.0, 0.0, 0, 0, Vector2( 0.998339, 0.332075 ), 0.0, 0.0, 0, 0 ]
@@ -19,7 +29,7 @@ height = 58.0
 [node name="Player" type="KinematicBody2D" groups=["player"]]
 collision_layer = 2
 script = ExtResource( 1 )
-player_stats = ExtResource( 3 )
+player_stats = SubResource( 3 )
 
 [node name="SplashParticle" type="CPUParticles2D" parent="."]
 modulate = Color( 0.458824, 0.839216, 1, 0.164706 )

@@ -187,6 +187,8 @@ color = Color( 0.870588, 1, 0.4, 1 )
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 10.0
+one_shot = true
+autostart = true
 
 [node name="Survivor" parent="." instance=ExtResource( 5 )]
 position = Vector2( -92, 17 )

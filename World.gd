@@ -9,14 +9,15 @@ onready var enemies_turrets = $Level/EnemiesTurrets
 onready var bullets = $Bullets
 onready var water_tiles = $Level/Tilemap/TileMapWater
 onready var objectives = $Level/Objectives
+onready var player = $Level/Player
 var objective = preload("res://Objective.tscn")
 var basic_enemy = preload("res://enemies/EnemyBasic.tscn")
 var basic_enemy_turret = preload("res://enemies/EnemyTurret.tscn")
 
-func _format_seconds(time : float) -> String:
-	var minutes := time / 60
-	var seconds := fmod(time, 60)
-	return "%02d:%02d" % [minutes, seconds]
+#func _format_seconds(time : float) -> String:
+#	var minutes := time / 60
+#	var seconds := fmod(time, 60)
+#	return "%02d:%02d" % [minutes, seconds]
 
 #func _process(delta: float) -> void:
 	#time_elapsed += delta
@@ -39,9 +40,15 @@ func check_active_objective() -> void:
 		spawn_objective()
 
 func spawn_objective() -> void:
+	world_stats.is_active_objective = true
 	var origin = get_open_cell_position()
 	var new_objective_instance = objective.instance()
 	new_objective_instance.global_position = origin
+	#print("player.global_position: ", player.global_position)
+	#print("origin: ", origin)
+	var distance = player.global_position.distance_to(origin)
+	#print("distance: ", distance)
+	new_objective_instance.timer.wait_time = int(distance / 100)
 	objectives.add_child(new_objective_instance)
 
 func spawn_enemies() -> void:

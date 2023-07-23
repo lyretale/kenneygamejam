@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/cannonshot.mp3-2cabe3da5d31833781dff655fe47412b.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/cannonshot.mp3"
+dest_files=[ "res://.import/cannonshot.mp3-2cabe3da5d31833781dff655fe47412b.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/cannonmiss.mp3-b2f2175924e1b7eb106194b7f5da73f4.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/cannonmiss.mp3"
+dest_files=[ "res://.import/cannonmiss.mp3-b2f2175924e1b7eb106194b7f5da73f4.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

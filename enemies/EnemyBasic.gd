@@ -9,6 +9,7 @@ export var origin = Vector2.ZERO
 onready var aggro_area := $AggroArea
 onready var neighbor_detector = $NeighborDetector
 onready var raycast := $RayCast2D
+onready var play_animation := $AnimationPlayer
 
 var turret_node = null
 var target: KinematicBody2D
@@ -62,7 +63,6 @@ func assign_turret(turret_path):
 	turret_node = get_node(turret_path)
 
 func die():
-	# dead animation 
 	turret_node.queue_free()
 	queue_free()
 

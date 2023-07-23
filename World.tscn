@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://island3.tscn" type="PackedScene" id=2]
@@ -7,23 +7,11 @@
 [ext_resource path="res://island1.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/tilemaps/decorations.tres" type="TileSet" id=6]
 [ext_resource path="res://assets/npcs/fish.tscn" type="PackedScene" id=7]
-[ext_resource path="res://assets/fonts/kenvector_future.ttf" type="DynamicFontData" id=8]
-[ext_resource path="res://assets/ui/green_panel.png" type="Texture" id=9]
-[ext_resource path="res://world_stats.tres" type="Resource" id=10]
-[ext_resource path="res://assets/ui/grey_panel.png" type="Texture" id=11]
-[ext_resource path="res://player_stats.tres" type="Resource" id=12]
-
-[sub_resource type="DynamicFont" id=1]
-size = 24
-font_data = ExtResource( 8 )
-
-[sub_resource type="Theme" id=2]
-default_font = SubResource( 1 )
+[ext_resource path="res://world_stats.tres" type="Resource" id=8]
 
 [node name="World" type="Node2D"]
 script = ExtResource( 4 )
-world_stats = ExtResource( 10 )
-player_stats = ExtResource( 12 )
+world_stats = ExtResource( 8 )
 
 [node name="Level" type="YSort" parent="."]
 
@@ -126,88 +114,6 @@ position = Vector2( 0, 3328 )
 
 [node name="Camera2D" type="Camera2D" parent="Level/Player"]
 current = true
-
-[node name="CanvasLayer" type="CanvasLayer" parent="Level/Player/Camera2D"]
-
-[node name="HealthBar" type="NinePatchRect" parent="Level/Player/Camera2D/CanvasLayer"]
-margin_right = 150.0
-margin_bottom = 40.0
-texture = ExtResource( 11 )
-
-[node name="Bar" type="TextureProgress" parent="Level/Player/Camera2D/CanvasLayer/HealthBar"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-value = 100.0
-texture_progress = ExtResource( 9 )
-nine_patch_stretch = true
-
-[node name="Label" type="RichTextLabel" parent="Level/Player/Camera2D/CanvasLayer/HealthBar"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 55.0
-margin_top = 7.0
-theme = SubResource( 2 )
-custom_colors/default_color = Color( 0, 0, 0, 1 )
-text = "100"
-
-[node name="ScoreBar" type="NinePatchRect" parent="Level/Player/Camera2D/CanvasLayer"]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -125.0
-margin_right = 125.0
-margin_bottom = 40.0
-texture = ExtResource( 11 )
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Level/Player/Camera2D/CanvasLayer/ScoreBar"]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -118.0
-margin_top = 7.0
-margin_right = 132.0
-margin_bottom = 47.0
-alignment = 1
-
-[node name="Label" type="RichTextLabel" parent="Level/Player/Camera2D/CanvasLayer/ScoreBar/HBoxContainer"]
-margin_right = 120.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 120, 0 )
-theme = SubResource( 2 )
-custom_colors/default_color = Color( 0, 0, 0, 1 )
-text = "Score: "
-scroll_active = false
-
-[node name="Score" type="RichTextLabel" parent="Level/Player/Camera2D/CanvasLayer/ScoreBar/HBoxContainer"]
-margin_left = 124.0
-margin_right = 250.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 100, 0 )
-size_flags_horizontal = 3
-theme = SubResource( 2 )
-custom_colors/default_color = Color( 0, 0, 0, 1 )
-text = "100"
-
-[node name="TimerBar" type="NinePatchRect" parent="Level/Player/Camera2D/CanvasLayer"]
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -150.0
-margin_bottom = 40.0
-texture = ExtResource( 11 )
-
-[node name="Bar" type="TextureProgress" parent="Level/Player/Camera2D/CanvasLayer/TimerBar"]
-modulate = Color( 0, 0, 0, 0.341176 )
-anchor_right = 1.0
-anchor_bottom = 1.0
-texture_progress = ExtResource( 9 )
-nine_patch_stretch = true
-
-[node name="Label" type="RichTextLabel" parent="Level/Player/Camera2D/CanvasLayer/TimerBar"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 55.0
-margin_top = 7.0
-theme = SubResource( 2 )
-custom_colors/default_color = Color( 0, 0, 0, 1 )
-text = "100"
 
 [node name="Turret" parent="." instance=ExtResource( 3 )]
 position = Vector2( 0, 3328 )

@@ -51,7 +51,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Pirate Ship Game"
-run/main_scene="res://World.tscn"
+run/main_scene="res://Title.tscn"
 config/icon="res://icon.png"
 
 [display]

@@ -72,10 +72,9 @@ text = "0
 scroll_active = false
 
 [node name="ScoreBar" type="NinePatchRect" parent="."]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -100.0
-margin_right = 100.0
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -200.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 200, 40 )
 texture = ExtResource( 3 )

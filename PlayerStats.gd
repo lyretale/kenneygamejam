@@ -19,6 +19,10 @@ func set_health(new_health: int) -> void:
 	health = new_health
 	save()
 
+func reset_score() -> void:
+	score = 0
+	save()
+
 func set_score(new_score: int) -> void:
 	score += new_score
 	save()

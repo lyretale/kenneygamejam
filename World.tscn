@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://island3.tscn" type="PackedScene" id=2]
@@ -10,7 +10,6 @@
 [ext_resource path="res://world_stats.tres" type="Resource" id=8]
 [ext_resource path="res://player_stats.tres" type="Resource" id=9]
 [ext_resource path="res://Canvas.tscn" type="PackedScene" id=10]
-[ext_resource path="res://pickups/PickupCooldown.tscn" type="PackedScene" id=11]
 
 [node name="World" type="Node2D"]
 script = ExtResource( 4 )
@@ -113,6 +112,8 @@ polygon = PoolVector2Array( -6144, -448, -6144, 6720, 6016, 6720, 6016, 7168, -6
 
 [node name="Objectives" type="Node2D" parent="Level"]
 
+[node name="Pickups" type="Node2D" parent="Level"]
+
 [node name="Player" parent="Level" instance=ExtResource( 1 )]
 position = Vector2( 0, 3328 )
 player_stats = ExtResource( 9 )
@@ -131,14 +132,7 @@ bullets_path = NodePath("../Bullets")
 
 [node name="WorldClock" type="Timer" parent="."]
 wait_time = 5.0
-one_shot = true
 autostart = true
-
-[node name="PickupCooldown" parent="." instance=ExtResource( 11 )]
-position = Vector2( 448, 3328 )
-
-[node name="PickupCooldown2" parent="." instance=ExtResource( 11 )]
-position = Vector2( 448, 3520 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 autoplay = true

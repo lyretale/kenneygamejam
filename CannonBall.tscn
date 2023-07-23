@@ -56,7 +56,7 @@ tracks/3/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Color( 1, 0.596078, 0, 1 ) ]
+"values": [ Color( 1, 0.596078, 0, 0 ) ]
 }
 tracks/4/type = "value"
 tracks/4/path = NodePath("Sprite:scale")
@@ -244,13 +244,13 @@ texture = ExtResource( 1 )
 offset = Vector2( -0.292221, -3.125 )
 
 [node name="Sprite2" type="Sprite" parent="."]
-modulate = Color( 1, 1, 1, 0.188551 )
+modulate = Color( 1, 1, 1, 0 )
 scale = Vector2( 1e-05, 1e-05 )
 texture = ExtResource( 3 )
 offset = Vector2( 0, -180 )
 
 [node name="Sprite3" type="Sprite" parent="."]
-modulate = Color( 1, 0.596078, 0, 1 )
+modulate = Color( 1, 0.596078, 0, 0 )
 scale = Vector2( 1e-05, 1e-05 )
 texture = ExtResource( 4 )
 offset = Vector2( -9.9, 3.70003 )

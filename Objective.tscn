@@ -136,13 +136,10 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0, 10 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 10 ),
+"transitions": PoolRealArray( 1 ),
 "values": [ {
-"args": [ false ],
-"method": "trigger_delivery_point"
-}, {
-"args": [ true ],
+"args": [  ],
 "method": "trigger_delivery_point"
 } ]
 }

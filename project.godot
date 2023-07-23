@@ -33,13 +33,19 @@ _global_script_classes=[ {
 "class": "Utils",
 "language": "GDScript",
 "path": "res://enemies/Utils.gd"
+}, {
+"base": "Resource",
+"class": "WorldStats",
+"language": "GDScript",
+"path": "res://WorldStats.gd"
 } ]
 _global_script_class_icons={
 "AISteering": "",
 "BoidSteering": "",
 "Context": "",
 "PlayerStats": "",
-"Utils": ""
+"Utils": "",
+"WorldStats": ""
 }
 
 [application]

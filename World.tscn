@@ -1,13 +1,15 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://island3.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Turret.tscn" type="PackedScene" id=3]
 [ext_resource path="res://World.gd" type="Script" id=4]
 [ext_resource path="res://island1.tscn" type="PackedScene" id=5]
+[ext_resource path="res://world_stats.tres" type="Resource" id=6]
 
 [node name="World" type="Node2D"]
 script = ExtResource( 4 )
+world_stats = ExtResource( 6 )
 
 [node name="Level" type="YSort" parent="."]
 
@@ -32,6 +34,8 @@ tile_data = PoolIntArray( -5963859, 1, 0, -5963858, 1, 2, -5963857, 1, 2, -59638
 
 [node name="EnemiesTurrets" type="Node2D" parent="Level"]
 
+[node name="Objectives" type="Node2D" parent="Level"]
+
 [node name="Player" parent="Level" instance=ExtResource( 1 )]
 position = Vector2( 0, 3328 )
 
@@ -44,3 +48,8 @@ target_path = NodePath("../Level/Player")
 bullets_path = NodePath("../Bullets")
 
 [node name="Bullets" type="Node" parent="."]
+
+[node name="WorldClock" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+autostart = true

@@ -15,12 +15,10 @@ func _ready() -> void:
 func _on_body_entered(body: Node) -> void:
 	if body.is_in_group("player"):
 		animation_player.play("occupied")
-		
+
 func _on_body_exited(body: Node) -> void:
 	if body.is_in_group("player"):
 		animation_player.play_backwards("occupied")
-		
-func trigger_delivery_point(is_on: bool) -> void:
-	if is_on:
-		#PCG of delivery zone
-		queue_free()
+
+func trigger_delivery_point() -> void:
+	pass

@@ -83,10 +83,12 @@ func toggle_attack_boost_effect(is_on: bool) -> void:
 		timer_attack_pickup.start()
 		player_stats.turret_cannon_attack = player_stats.turret_cannon_attack * 2
 		
+# We need a way for this to update the turret_cooldown_timer in Turret.tscn
+
 func toogle_cooldown_pickup(is_on:bool) -> void:
 	if is_on:
 		timer_attack_pickup.start()
-		player_stats.turret_cooldown = player_stats.turret_cooldown * 0.5
+		player_stats.turret_cooldown = player_stats.turret_cooldown * 0.2
 		
 ### Healing and speed particles are looping playback and else statement is not working
 func toggle_heal_pickup_effect(is_on: bool) -> void:

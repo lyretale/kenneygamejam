@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/enemydowned.mp3-eb0d8ac7824f0883538cde6827319373.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/enemydowned.mp3"
+dest_files=[ "res://.import/enemydowned.mp3-eb0d8ac7824f0883538cde6827319373.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

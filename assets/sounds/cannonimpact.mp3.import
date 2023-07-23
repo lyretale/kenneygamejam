@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/cannonimpact.mp3-96746fd4af9de25f61d9f19a38199382.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/cannonimpact.mp3"
+dest_files=[ "res://.import/cannonimpact.mp3-96746fd4af9de25f61d9f19a38199382.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

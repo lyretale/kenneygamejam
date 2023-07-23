@@ -10,6 +10,7 @@ export var origin = Vector2.ZERO
 onready var aggro_area := $AggroArea
 onready var neighbor_detector = $NeighborDetector
 onready var raycast := $RayCast2D
+onready var play_animation := $AnimationPlayer
 
 var turret_node = null
 var target: KinematicBody2D

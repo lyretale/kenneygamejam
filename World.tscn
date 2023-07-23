@@ -123,6 +123,7 @@ polygon = PoolVector2Array( -6144, -448, -6144, 6720, 6016, 6720, 6016, 7168, -6
 
 [node name="Player" parent="Level" instance=ExtResource( 1 )]
 position = Vector2( 0, 3328 )
+player_stats = ExtResource( 12 )
 
 [node name="Camera2D" type="Camera2D" parent="Level/Player"]
 current = true

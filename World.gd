@@ -10,6 +10,7 @@ onready var enemies_turrets = $Level/EnemiesTurrets
 onready var bullets = $Bullets
 onready var water_tiles = $Level/Tilemap/TileMapWater
 onready var objectives = $Level/Objectives
+onready var pickups = $Level/Pickups
 onready var player = $Level/Player
 onready var health_bar = $Level/Player/Camera2D/CanvasLayer/HealthBar/Bar
 onready var health_label = $Level/Player/Camera2D/CanvasLayer/HealthBar/Label
@@ -20,6 +21,11 @@ onready var game_label = $Level/Player/Camera2D/CanvasLayer/GameOver
 var objective = preload("res://Objective.tscn")
 var basic_enemy = preload("res://enemies/EnemyBasic.tscn")
 var basic_enemy_turret = preload("res://enemies/EnemyTurret.tscn")
+#var pickup_gold = preload("res://pickups/PickupGold.tscn")
+#var pickup_gold_stack = preload("res://pickups/PickupGoldStack.tscn")
+var pickup_health = preload("res://pickups/PickupHealth.tscn")
+var pickup_speed = preload("res://pickups/PickupSpeedBoost.tscn")
+var pickup_array = [pickup_health, pickup_speed]
 
 #func _format_seconds(time : float) -> String:
 #	var minutes := time / 60
@@ -40,11 +46,14 @@ func get_open_cell_position() -> Vector2:
 func _ready() -> void:
 	world_stats.is_active_objective = false
 	player_stats.health = 100
+	player_stats.reset_score()
 	world_clock.connect("timeout", self, "check_active_objective")
 	player.connect("update_health", self, "update_health_bar")
 	player.connect("end_game", self, "end_game")
+	player.connect("update_score_player", self, "update_score_bar")
 	randomize()
-	spawn_enemies()
+	spawn_enemies(15)
+	spawn_pickups(15)
 
 func end_game() -> void:
 	game_label.visible = true
@@ -66,6 +75,13 @@ func update_score_bar(new_score) -> void:
 func check_active_objective() -> void:
 	if not world_stats.is_active_objective:
 		spawn_objective()
+	spawn_enemies(15)
+	spawn_pickups(5)
+
+func update_objective() -> void:
+	for n in objectives.get_children():
+		n.queue_free()
+	world_stats.is_active_objective = false
 
 func spawn_objective() -> void:
 	world_stats.is_active_objective = true
@@ -85,10 +101,11 @@ func spawn_objective() -> void:
 	new_objective_instance.set_player_stats(player_stats)
 	new_objective_instance.connect("update_score_objective", self, "update_score_bar")
 	new_objective_instance.connect("update_time", self, "update_time_bar")
+	new_objective_instance.connect("update_objective", self, "update_objective")
 	player.set_current_objective(origin)
 
-func spawn_enemies() -> void:
-	for i in range(world_stats.get_wave_amount()):
+func spawn_enemies(num) -> void:
+	for i in range(num):
 		spawn_enemy()
 
 func spawn_enemy() -> void:
@@ -107,4 +124,15 @@ func spawn_enemy() -> void:
 	new_enemy_instance.assign_turret(new_enemy_turret_instance.get_path())
 	new_enemy_instance.set_player_stats(player_stats)
 	new_enemy_instance.connect("update_score_enemy", self, "update_score_bar")
-	
+
+func spawn_pickups(num) -> void:
+	for i in range(num):
+		spawn_pickup()
+
+func spawn_pickup() -> void:
+	var origin = get_open_cell_position()
+	var select = randi() % pickup_array.size()
+	var selected = pickup_array[select]
+	var new_pickup_instance = selected.instance()
+	pickups.add_child(new_pickup_instance)
+	new_pickup_instance.global_position = origin

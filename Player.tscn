@@ -163,7 +163,6 @@ wait_time = 7.0
 one_shot = true
 
 [node name="TimerGoldPickUp" type="Timer" parent="."]
-wait_time = 0.1
 one_shot = true
 
 [node name="TimerHealingPickUp" type="Timer" parent="."]

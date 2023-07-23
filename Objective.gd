@@ -9,6 +9,7 @@ onready var objective_area := $ObjectiveCollision
 
 signal update_time(new_time)
 signal update_score_objective(new_score)
+signal update_objective
 
 func _ready() -> void:
 	timer.connect("timeout", self, "time_ran_out")
@@ -46,4 +47,5 @@ func send_time() -> void:
 func trigger_delivery_point() -> void:
 	player_stats.score = 30
 	emit_signal("update_score_objective", player_stats.score)
+	emit_signal("update_objective")
 	queue_free()

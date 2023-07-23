@@ -17,6 +17,7 @@ onready var healing_particles := $HealingParticle
 
 signal update_health
 signal end_game
+signal update_score_player(new_score)
 
 var direction := Vector2.ZERO
 var desired_velocity := Vector2.ZERO
@@ -70,13 +71,15 @@ func take_damage(damage) -> void:
 
 func add_gold(is_on:bool) -> void:
 	if is_on:
+		player_stats.score = 10
+		emit_signal("update_score_player", player_stats.score)
 		timer_gold_pickup.start()
-		player_stats.gold += 10
-		
+
 func add_gold_stack(is_on: bool) -> void:
 	if is_on:
+		player_stats.score = 30
+		emit_signal("update_score_player", player_stats.score)
 		timer_gold_pickup.start()
-		player_stats.gold += 30
 
 func toggle_attack_boost_effect(is_on: bool) -> void:
 	if is_on:
@@ -95,6 +98,8 @@ func toggle_heal_pickup_effect(is_on: bool) -> void:
 	if is_on:
 		timer_healing_pickup.start()
 		player_stats.health += 25
+		print("player_stats.health: ", player_stats.health)
+		emit_signal("update_health")
 		healing_particles.one_shot = true
 		healing_particles.emitting = true
 	else:

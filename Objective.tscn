@@ -1,13 +1,10 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Objective.gd" type="Script" id=1]
 [ext_resource path="res://assets/particles/PNG (Transparent)/circle_01.png" type="Texture" id=2]
 [ext_resource path="res://assets/pickups/objective.png" type="Texture" id=3]
 [ext_resource path="res://assets/particles/PNG (Transparent)/symbol_02.png" type="Texture" id=4]
-[ext_resource path="res://TileMap.tscn" type="PackedScene" id=5]
-[ext_resource path="res://assets/npcs/womanGreen_stand.png" type="Texture" id=6]
-[ext_resource path="res://assets/npcs/survivor1_stand.png" type="Texture" id=7]
-[ext_resource path="res://assets/npcs/manBrown_stand.png" type="Texture" id=8]
+[ext_resource path="res://survivors/survivor.tscn" type="PackedScene" id=5]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 620.0
@@ -40,6 +37,18 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Survivor:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -92, 17 ) ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -120,20 +129,39 @@ tracks/3/keys = {
 "update": 0,
 "values": [ Color( 0.352941, 1, 0.180392, 0.670588 ), Color( 0.352941, 1, 0.180392, 0 ) ]
 }
+tracks/4/type = "method"
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 10 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [ false ],
+"method": "trigger_delivery_point"
+}, {
+"args": [ true ],
+"method": "trigger_delivery_point"
+} ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "swimming"
+length = 4.0
 
 [node name="Objective" type="Area2D"]
+collision_mask = 3
 script = ExtResource( 1 )
-
-[node name="TileMap" parent="." instance=ExtResource( 5 )]
-tile_data = PoolIntArray( -131075, 1, 0, -131074, 1, 2, -131073, 1, 2, -196608, 1, 2, -196607, 1, 2, -196606, 1, 3, -65539, 1, 65536, -65538, 1, 131073, -65537, 1, 65538, -131072, 1, 65538, -131071, 1, 65537, -131070, 1, 131075, -3, 1, 65536, -2, 1, 131073, -1, 1, 131073, -65536, 1, 65538, -65535, 1, 131074, -65534, 1, 131075, 65533, 1, 131072, 65534, 1, 65538, 65535, 1, 131074, 0, 1, 65537, 1, 1, 131073, 2, 1, 131075, 131069, 1, 196608, 131070, 1, 196610, 131071, 1, 196609, 65536, 1, 196610, 65537, 1, 196610, 65538, 1, 196611 )
 
 [node name="ObjectiveCollision" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
 [node name="ObjectiveHighlightDynamic" type="Sprite" parent="."]
-modulate = Color( 0.352941, 1, 0.180392, 0.905882 )
+modulate = Color( 0.352941, 1, 0.180392, 0.662745 )
 position = Vector2( 0, -2 )
-scale = Vector2( 1.122, 1.122 )
+scale = Vector2( 3.3, 3.3 )
 texture = ExtResource( 2 )
 
 [node name="ObjectiveHighlightArea" type="Sprite" parent="."]
@@ -143,8 +171,7 @@ scale = Vector2( 3.3, 3.3 )
 texture = ExtResource( 2 )
 
 [node name="ObjectiveIcon" type="Sprite" parent="."]
-modulate = Color( 1, 1, 1, 0.4 )
-position = Vector2( 37, -68 )
+position = Vector2( 36, -117 )
 scale = Vector2( 3.3, 3.3 )
 texture = ExtResource( 3 )
 
@@ -161,19 +188,16 @@ initial_velocity_random = 0.28
 scale_amount_curve = SubResource( 5 )
 color = Color( 0.870588, 1, 0.4, 1 )
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+
+[node name="Survivor" parent="." instance=ExtResource( 5 )]
+position = Vector2( -92, 17 )
+rotation = 0.523599
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "swimming"
 anims/RESET = SubResource( 3 )
 anims/complete = SubResource( 4 )
 anims/occupied = SubResource( 2 )
-
-[node name="ManBrownStand" type="Sprite" parent="."]
-position = Vector2( -68, -87 )
-texture = ExtResource( 8 )
-
-[node name="WomanGreenStand" type="Sprite" parent="."]
-position = Vector2( 82, 9 )
-texture = ExtResource( 6 )
-
-[node name="Survivor1Stand2" type="Sprite" parent="."]
-position = Vector2( -87, 5 )
-texture = ExtResource( 7 )
+anims/swimming = SubResource( 6 )

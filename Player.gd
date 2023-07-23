@@ -16,11 +16,13 @@ onready var speed_boost_particles := $SpeedBoostParticle
 onready var healing_particles := $HealingParticle
 
 signal update_health
+signal end_game
 
 var direction := Vector2.ZERO
 var desired_velocity := Vector2.ZERO
 var steering_vector := Vector2.ZERO
 var velocity := Vector2.ZERO
+var current_objective_position := Vector2.ZERO
 
 func _ready() -> void:
 	timer_speed_pickup.connect("timeout", self, "toggle_heal_pickup_effect", [false])
@@ -30,6 +32,9 @@ func _ready() -> void:
 ### Movement
 
 func _physics_process(delta: float) -> void:
+	if current_objective_position:
+		update()
+	
 	direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 
 	if Input.is_action_just_pressed("boost") and not get_node("Boost").time_left > 0:
@@ -58,7 +63,8 @@ func _on_Boost_timeout() -> void:
 func take_damage(damage) -> void:
 	player_stats.health -= damage
 	emit_signal("update_health")
-	print("player health: ", player_stats.health)
+	if player_stats.health <= 0:
+		emit_signal("end_game")
 
 ### PICKUPS ###
 
@@ -105,3 +111,11 @@ func toggle_speed_pickup_effect(is_on: bool) -> void:
 		speed_boost_particles.one_shot = false
 		speed_boost_particles.emitting = false
 		
+
+func set_current_objective(objective_position):
+	current_objective_position = objective_position
+
+func _draw():
+	if current_objective_position:
+		self.draw_line(Vector2.ZERO, self.to_local(current_objective_position), Color.red)
+

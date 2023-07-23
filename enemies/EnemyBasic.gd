@@ -2,6 +2,7 @@ extends KinematicBody2D
 
 var steering = BoidSteering.new()
 
+export var player_stats: Resource = null
 export var max_speed := 150.0
 export var drag_factor := 0.95
 export var origin = Vector2.ZERO
@@ -16,8 +17,11 @@ var velocity := Vector2.ZERO
 var desired_velocity := Vector2.ZERO
 var steering_vector := Vector2.ZERO
 var direction := Vector2.ZERO
+var current_objective_position := Vector2.ZERO
 
 var health := 20
+
+signal update_score_enemy(new_score)
 
 func _ready() -> void:
 	aggro_area.connect("body_entered", self, "_on_player_entered")
@@ -62,9 +66,13 @@ func assign_turret(turret_path):
 	turret_node = get_node(turret_path)
 
 func die():
-	# dead animation 
+	player_stats.score = 10
+	emit_signal("update_score_enemy", player_stats.score)
 	turret_node.queue_free()
 	queue_free()
+
+func set_player_stats(stats) -> void:
+	player_stats = stats
 
 func take_damage(damage) -> void:
 	health -= damage
@@ -82,3 +90,4 @@ func _on_player_exited(body: KinematicBody2D) -> void:
 	# When player exits the Area2D, the target is out of range.
 	if body.is_in_group("player"):
 		target = null
+

@@ -2,7 +2,7 @@ class_name PlayerStats
 extends Resource
 
 export var health := 100 setget set_health
-export var gold := 0 setget set_gold
+export var score := 0 setget set_score
 export var boost_speed := 1000.0 setget set_boost_speed
 export var normal_speed := 400.0 setget set_normal_speed
 export var drag_factor := 0.01 setget set_drag_factor
@@ -19,8 +19,8 @@ func set_health(new_health: int) -> void:
 	health = new_health
 	save()
 
-func set_gold(new_gold: int) -> void:
-	gold += new_gold
+func set_score(new_score: int) -> void:
+	score += new_score
 	save()
 
 func set_turret_cooldown(new_cooldown: float) -> void:

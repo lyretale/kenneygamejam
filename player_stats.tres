@@ -4,8 +4,8 @@
 
 [resource]
 script = ExtResource( 1 )
-health = 130
-score = 1490
+health = 0
+score = 0
 boost_speed = 1000.0
 normal_speed = 400.0
 drag_factor = 0.01
